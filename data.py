@@ -1,4 +1,13 @@
 # data
+# Transportation Class
+# mode: bus, Light Rail, Heavy Rail
+# City: New York City, Chicago, Seattle, San Fransisco, Los Angeles
+# Energy: {'metric': 'electric', 'diesel', 'value': #, 'unit': 'kWh, 'kg/gal'}
+# Emissions: {'factor': #, 'unit': 'kWh, 'kg/gal'}
+# Passengers: {'avg on board': #(Average Passengers on Board),
+#       'avg pass trip': #(Average Passenger trip Length in miles),
+#       'avg daily riders': #(Average amount of riders per day)}
+# dailymiles: #The distance each mode travels per day in miles
 class Transportations:
     def __init__(self,
                  mode: str,
