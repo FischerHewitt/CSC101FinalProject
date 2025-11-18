@@ -1,0 +1,1 @@
+city, mode, energy_metric, energy_value, energy_units, emission_factor, EF_Units, avg_on_board, avg_pass_trip_length, avg_daily_riders, avg_daily_miles
