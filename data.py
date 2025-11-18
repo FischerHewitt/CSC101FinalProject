@@ -15,6 +15,19 @@ class Transportations:
         self.passengers = passengers
         self.dailymiles = dailymiles
 
+    def __repr__(self):
+        return "(mode:{}, city:{}, energy:{}, emissions:{}, passengers:{}, dailymiles:{})".format(
+            self.mode, self.city, self.energy, self.emissions, self.passengers, self.dailymiles
+        )
+
+    def __eq__(self, other):
+        return (self == other) or ((self.mode == other.mode)
+                                   and (self.city == other.city)
+                                   and (self.energy == other.energy)
+                                    and (self.emissions == other.emissions)
+                                    and (self.passengers == other.passengers)
+                                   and (self.dailymiles == other.dailymiles))
+
 # Purpose: to get data from the file, and create a list of objects [transportations]
 # Input: None
 # Output: list[Transportations]
@@ -24,7 +37,7 @@ class Transportations:
 def get_data() -> list[Transportations]:
     transitFile = open("citytransit.txt","r")
     transportations = []
-    each_data_line = transitFile.readline()
+    each_data_line = transitFile.readlines()
     index = 1
     while index < len(each_data_line):
         words = each_data_line[index].split(",")
@@ -50,3 +63,5 @@ def get_passengers(words: list[str]) -> dict[str,float]|dict[str,str]:
     passengers = {'avg on board': float(words[7]), 'avg pass trip': float(words[8]),
                   'avg daily riders': float(words[9])}
     return passengers
+
+print(get_data())
