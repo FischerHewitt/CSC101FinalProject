@@ -13,7 +13,7 @@ class Transportations:
         self.energy = energy
         self.emissions = emissions
         self.passengers = passengers
-        self.dailyMiles = dailymiles
+        self.dailymiles = dailymiles
 
 # Purpose: to get data from the file, and create a list of objects [transportations]
 # Input: None

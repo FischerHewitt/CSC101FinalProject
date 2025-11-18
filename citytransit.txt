@@ -1,1 +1,16 @@
 city, mode, energy_metric, energy_value, energy_units, emission_factor, EF_Units, avg_on_board, avg_pass_trip_length, avg_daily_riders, avg_daily_miles
+New York City,Bus,diesel,0.3,gal,10.16,kg/gal,13.6,3.6,1166000,313800
+New York City,Light Rail,electric,2.5,kWh,0.37,kg/kWh,58.7,7,2776000,329670
+New York City,Heavy Rail,electric,2.7,kWh,0.37,kg/kWh,22.9,21.2,373000,345400
+Chicago,Bus,diesel,0.3,gal,10.16,kg/gal,8,2.5,383600,121100
+Chicago,Light Rail,electric,2.5,kWh,0.4,kg/kWh,9.2,5.9,283500,183500
+Chicago,Heavy Rail,diesel,0.5,gal,10.16,kg/gal,29.8,23,63000,49300
+Seattle,Bus,diesel,0.3,gal,10.16,kg/gal,6.9,3.6,174100,91600
+Seattle,Light Rail,electric,2,kWh,0.01,kg/kWh,20.2,6.8,64700,21860
+Seattle,Heavy Rail,diesel,0.5,gal,10.16,kg/gal,17.2,137.5,625,5020
+Los Angeles,Bus,diesel,0.3,gal,10.16,kg/gal,9.2,3.2,540500,188300
+Los Angeles,Light Rail,electric,2.5,kWh,0.27,kg/kWh	10.9,5.6,152700,78360
+Los Angeles,Heavy Rail,diesel,0.5,gal,10.16,kg/gal,13.5,38.4,10280,29270
+San Francisco,Bus,diesel,0.3,gal,10.16,kg/gal,9.4,1.8,230100,44700
+San Francisco,Light Rail,electric,3.2,kWh,0,kg/kWh,6.7,9.9,154850,230900
+San Francisco,Heavy Rail,diesel,0.5,gal,10.16,kg/gal,13,22.3,11110,19060
