@@ -15,7 +15,12 @@ class Transportations:
         self.passengers = passengers
         self.dailyMiles = dailymiles
 
-
+# Purpose: to get data from the file, and create a list of objects [transportations]
+# Input: None
+# Output: list[Transportations]
+# ExInput: None
+# ExOutput:
+# How to do:
 def get_data() -> list[Transportations]:
     transitFile = open("cities.txt","r")
     transportations = []
