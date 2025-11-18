@@ -22,7 +22,7 @@ class Transportations:
 # ExOutput:
 # How to do:
 def get_data() -> list[Transportations]:
-    transitFile = open("cities.txt","r")
+    transitFile = open("citytransit.txt","r")
     transportations = []
     each_data_line = transitFile.readline()
     index = 1
