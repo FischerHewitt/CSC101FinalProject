@@ -16,7 +16,7 @@ class Transportations:
         self.dailymiles = dailymiles
 
     def __repr__(self):
-        return "(mode:{}, city:{}, energy:{}, emissions:{}, passengers:{}, dailymiles:{})".format(
+        return "(mode:{}, city:{}, energy:{}, emissions:{}, passengers:{}, dailymiles:{})\n".format(
             self.mode, self.city, self.energy, self.emissions, self.passengers, self.dailymiles
         )
 
