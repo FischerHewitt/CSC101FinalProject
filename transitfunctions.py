@@ -14,3 +14,17 @@ from data import Transportations
 #   multiply energy value by emissions factor -> .energy['value'] * .emissions['factor']
 def get_co2_per_vehicle_mile(mode:Transportations) -> float:
     return mode.energy['value'] * mode.emissions['factor']
+
+def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Transportations]:
+    sort_lst_of_cos_per_vehicle_mile = lst_of_transport
+    for iterations in range(len(sort_lst_of_cos_per_vehicle_mile)-1):
+        min_idx = iterations
+        for idx in range(iterations, len(sort_lst_of_cos_per_vehicle_mile)):
+            if (get_co2_per_vehicle_mile(sort_lst_of_cos_per_vehicle_mile[idx]) <
+                    get_co2_per_vehicle_mile(sort_lst_of_cos_per_vehicle_mile[min_idx])):
+                min_idx = idx
+        if min_idx != iterations:
+            temp = sort_lst_of_cos_per_vehicle_mile[min_idx]
+            sort_lst_of_cos_per_vehicle_mile[min_idx] = sort_lst_of_cos_per_vehicle_mile[iterations]
+            sort_lst_of_cos_per_vehicle_mile[iterations] = temp
+    return sort_lst_of_cos_per_vehicle_mile
