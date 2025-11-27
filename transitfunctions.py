@@ -15,6 +15,10 @@ from data import Transportations
 def get_co2_per_vehicle_mile(mode:Transportations) -> float:
     return mode.energy['value'] * mode.emissions['factor']
 
+# (kgCO2/mile) x
+def get_co2_per_passenger_mile(mode:Transportations) -> float:
+    return get_co2_per_vehicle_mile(mode)/mode.passengers['avg on board']
+
 def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Transportations]:
     sort_lst_of_cos_per_vehicle_mile = lst_of_transport
     for iterations in range(len(sort_lst_of_cos_per_vehicle_mile)-1):

@@ -2,8 +2,8 @@
 # Transportation Class
 # mode: bus, Light Rail, Heavy Rail
 # City: New York City, Chicago, Seattle, San Fransisco, Los Angeles
-# Energy: {'metric': 'electric', 'diesel', 'value': #, 'unit': 'kWh, 'kg/gal'}
-# Emissions: {'factor': #, 'unit': 'kWh, 'kg/gal'}
+# Energy: {'metric': 'electric', 'diesel', 'value': #, 'unit': 'kWh/mile, 'gal/mile'}
+# Emissions: {'factor': #, 'unit': 'kgCO2/kWh', 'kgCO2/gal'}
 # Passengers: {'avg on board': #(Average Passengers on Board),
 #       'avg pass trip': #(Average Passenger trip Length in miles),
 #       'avg daily riders': #(Average amount of riders per day)}

@@ -5,7 +5,7 @@ import transitfunctions
 full_data = data.get_data()
 
 class UnitTests(unittest.TestCase):
-    def test_sort_co2_per_vehicle_mile(self):
+    def test_sort_city_mode_co2_per_vehicle_mile(self):
         input1 = full_data
         actual = transitfunctions.sort_co2_per_vehicle_mile(input1)
         empty_list = []
