@@ -25,3 +25,11 @@ class UnitTests(unittest.TestCase):
             co2 = round(transitfunctions.get_co2_per_vehicle_mile(actual[idx]),5)
             print("{}-{}:{} kgCO2, ".format(city, transit, co2))
 
+    def test_get_city_co2_per_day(self):
+        input1 = full_data
+        actual = transitfunctions.get_city_co2_per_day(input1)
+        print(actual)
+        sort = transitfunctions.sort_city_co2_per_day(actual)
+        print(sort)
+
+
