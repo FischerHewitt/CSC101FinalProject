@@ -57,6 +57,11 @@ def get_co2_per_passenger_mile(mode:Transportations) -> float:
             sort_lst_of_cos_per_passenger_mile1[iterations] = temp
     return sort_lst_of_cos_per_passenger_mile1'''
 
+# Purpose: to take in a list of transportation objects, and return a dictionary
+#   containing the city and the carbon emissions per day
+# Input: list[Transportations]
+# Output: dict[str, float]
+# ExInput:
 def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, float]:
     dict_of_city_co2_per_day = {}
     for idx in range(len(lst_of_transport2)):
