@@ -61,7 +61,17 @@ def get_co2_per_passenger_mile(mode:Transportations) -> float:
 #   containing the city and the carbon emissions per day
 # Input: list[Transportations]
 # Output: dict[str, float]
-# ExInput:
+# ExInput: data.get_data()
+# ExOutput: {'New York City': 1646340.0885, 'Chicago': 584325.26,
+# 'Seattle': 295829.04, 'Los Angeles': 805112.167,
+# 'San Francisco': 289827.66000000003}
+# how to do: create an empty dictionary -> ={}
+# go through each item in the list -> for loop
+# determine if it is in the dictionary -> if statement
+#   add to the dictionary -> dict[lst_of_transport[idx].city] = (get_co2_per_vehicle_mile(lst_of_transport[idx])*
+#                                                                      lst_of_transport[idx].dailymiles)
+#   add to the value in the dictionary -> dict[lst_of_transport[idx].city] += (get_co2_per_vehicle_mile(lst_of_transport[idx])*
+#                   lst_of_transport[idx].dailymiles)
 def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, float]:
     dict_of_city_co2_per_day = {}
     for idx in range(len(lst_of_transport2)):
@@ -73,7 +83,15 @@ def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, f
                                                                      lst_of_transport2[idx].dailymiles)
     return dict_of_city_co2_per_day
 
-def sort_dict_in_lst_form(lst_of_key_and_values:list[str, float]) -> list[str, float]:
+# Purpose: to take in a list of lists that has str and float values (to imitate a dictionary) and sort the
+#   list of list based on the float values
+# Input: list[list[str, float]]
+# Output: list[list[str, float]]
+# ExInput: [['New York City', 1646340.0885], ['Chicago', 584325.26], ['Seattle', 295829.04],
+#   ['Los Angeles', 805112.167], ['San Francisco', 289827.66000000003]]
+# ExOutput: [['San Francisco', 289827.66000000003], ['Seattle', 295829.04], ['Chicago', 584325.26],
+#   ['Los Angeles', 805112.167], ['New York City', 1646340.0885]]
+def sort_dict_in_lst_form(lst_of_key_and_values:list[list[str, float]]) -> list[list[str, float]]:
     lst_to_sort = lst_of_key_and_values
     for iteration in range(len(lst_to_sort)):
         min_idx = iteration
