@@ -4,7 +4,7 @@ New York City,Light Rail,electric,2.5,kWh/mile,0.3927,kgCO2/kWh,58.7,7,2776000,3
 New York City,Heavy Rail,electric,2.7,kWh/mile,0.3927,kgCO2/kWh,22.9,21.2,373000,345400,
 Chicago,Bus,diesel,0.27,gal/mile,10.16,kgCO2/gal,8,2.5,383600,121100,
 Chicago,Light Rail,electric,2.5,kWh/mile,0.4156,kgCO2/kWh,9.2,5.9,283500,183500,
-Chicago,Heavy Rail,diesel,0.5,gal/mile,10.16,kgCO2/gal,29.8,23,63000,49300,
+Chicago,Heavy Rail,electric,3,kWh/mile,0.4156,kgCO2/kWh,29.8,23,63000,49300,
 Seattle,Bus,diesel,0.29,gal/mile,10.16,kgCO2/gal,6.9,3.6,174100,91600,
 Seattle,Light Rail,electric,2,kWh/mile,0.01,kgCO2/kWh,20.2,6.8,64700,21860,
 Seattle,Heavy Rail,diesel,0.5,gal/mile,10.16,kgCO2/gal,17.2,137.5,625,5020,
