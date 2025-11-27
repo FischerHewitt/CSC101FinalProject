@@ -15,10 +15,11 @@ from data import Transportations
 def get_co2_per_vehicle_mile(mode:Transportations) -> float:
     return mode.energy['value'] * mode.emissions['factor']
 
-# (kgCO2/mile) x
+# (kgCO2/mile) x (1/passenger) = kgCO2 per passenger mile
 def get_co2_per_passenger_mile(mode:Transportations) -> float:
     return get_co2_per_vehicle_mile(mode)/mode.passengers['avg on board']
 
+# This Might be worthless
 def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Transportations]:
     sort_lst_of_cos_per_vehicle_mile = lst_of_transport
     for iterations in range(len(sort_lst_of_cos_per_vehicle_mile)-1):
@@ -32,3 +33,43 @@ def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Tr
             sort_lst_of_cos_per_vehicle_mile[min_idx] = sort_lst_of_cos_per_vehicle_mile[iterations]
             sort_lst_of_cos_per_vehicle_mile[iterations] = temp
     return sort_lst_of_cos_per_vehicle_mile
+
+# This might be worthless
+def sort_co2_per_passenger_mile(lst_of_transport1:list[Transportations]) -> list[Transportations]:
+    sort_lst_of_cos_per_passenger_mile1 = lst_of_transport1
+    for iterations in range(len(sort_lst_of_cos_per_passenger_mile1)-1):
+        min_idx = iterations
+        for idx in range(iterations, len(sort_lst_of_cos_per_passenger_mile1)):
+            if (get_co2_per_passenger_mile(sort_lst_of_cos_per_passenger_mile1[idx]) <
+                    get_co2_per_passenger_mile(sort_lst_of_cos_per_passenger_mile1[min_idx])):
+                min_idx = idx
+        if min_idx != iterations:
+            temp = sort_lst_of_cos_per_passenger_mile1[min_idx]
+            sort_lst_of_cos_per_passenger_mile1[min_idx] = sort_lst_of_cos_per_passenger_mile1[iterations]
+            sort_lst_of_cos_per_passenger_mile1[iterations] = temp
+    return sort_lst_of_cos_per_passenger_mile1
+
+def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, float]:
+    dict_of_city_co2_per_day = {}
+    for idx in range(len(lst_of_transport2)):
+        if lst_of_transport2[idx].city not in dict_of_city_co2_per_day:
+            dict_of_city_co2_per_day[lst_of_transport2[idx].city] = (get_co2_per_vehicle_mile(lst_of_transport2[idx])*
+                                                                     lst_of_transport2[idx].dailymiles)
+        else:
+            dict_of_city_co2_per_day[lst_of_transport2[idx].city] += (get_co2_per_vehicle_mile(lst_of_transport2[idx]) *
+                                                                     lst_of_transport2[idx].dailymiles)
+    return dict_of_city_co2_per_day
+
+def sort_city_co2_per_day(dic_of_city_co2_per_day:dict[str, float]) -> dict[str, float]:
+    lst_city_co2_per_day = []
+    for key in dic_of_city_co2_per_day:
+        lst_city_co2_per_day.append([key, dic_of_city_co2_per_day[key]])
+
+
+
+# for each sorted list we assign point value to add to a dictionary, and then at the end we could display multiple
+#   or just code these and bypass the sorting
+#   dictionaries of which city had the least carbon footprint per day
+#   and which transportation mode had the least carbon footprint per mile and per day
+#   which city had the least carbon footprint in relation to the passengers
+#   which mode had the least carbon footprint in relation to the passengers
