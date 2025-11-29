@@ -112,13 +112,32 @@ def sort_dict_in_lst_form(lst_of_key_and_values:list[list[str, float]]) -> list[
             lst_to_sort[iteration] = temp
     return lst_to_sort
 
-# Purpose: to take in a dictionary of [str: float]
+# Purpose: to take in a dictionary of [str: float] and return a list of lists with [string, float] pairs
+# Input: dict[str, float]
+# Output: list[list[str, float]]
+# ExInput: {'Chicago': 584325.26, 'Los Angeles': 805112.167, 'New York City': 1646340.0885,
+#  'San Francisco': 289827.66000000003, 'Seattle': 295829.04}
+# ExOutput: [['Chicago', 584325.26], ['Los Angeles', 805112.167], ['New York City', 1646340.0885],
+#  ['San Francisco', 289827.66000000003], ['Seattle', 295829.04]]
+# how to do: have an empty list -> empty = []
+# go through each item in the dictionary -> for loop
+# add each item to the empty list -> .append([key, any_dict[key]])
 def get_dict_in_lst_form(any_dict:dict[str, float]) -> list[list[str, float]]:
     lst_of_dict = []
     for key in any_dict:
         lst_of_dict.append([key, any_dict[key]])
     return lst_of_dict
 
+# Purpose: take in a list of lists with [string, float] pairs and return a dictionary of [str: float]
+# Input: list[list[str, float]]
+# Output: dict[str, float]
+# ExInput: [['Chicago', 584325.26], ['Los Angeles', 805112.167], ['New York City', 1646340.0885],
+#  ['San Francisco', 289827.66000000003], ['Seattle', 295829.04]]
+# ExOutput: {'Chicago': 584325.26, 'Los Angeles': 805112.167, 'New York City': 1646340.0885,
+#  'San Francisco': 289827.66000000003, 'Seattle': 295829.04}
+# how to do: have an empty dictionary -> empty = {}
+# go through each element in the list -> for loop
+# add to the dictionary -> empty[pair[0]] = pair[1]
 def get_lst_in_dict_form(any_lst:list[list[str, float]]) -> dict[str, float]:
     lst_of_dict = {}
     for key_value in any_lst:
