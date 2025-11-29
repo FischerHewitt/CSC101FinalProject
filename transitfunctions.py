@@ -91,6 +91,14 @@ def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, f
 #   ['Los Angeles', 805112.167], ['San Francisco', 289827.66000000003]]
 # ExOutput: [['San Francisco', 289827.66000000003], ['Seattle', 295829.04], ['Chicago', 584325.26],
 #   ['Los Angeles', 805112.167], ['New York City', 1646340.0885]]
+# how to do: go through each element -> for loop
+#  selection sort/save minimum idx -> min_idx = iteration
+#  compare to each element -> for loop
+#  check if value is less than the current minimum -> if statement lst[idx] < lst[min]
+#  swap if necessary -> if min_idx != idx
+#       temp = lst[min]
+#       lst[min] = lst[idx]
+#       lst[idx] = temp
 def sort_dict_in_lst_form(lst_of_key_and_values:list[list[str, float]]) -> list[list[str, float]]:
     lst_to_sort = lst_of_key_and_values
     for iteration in range(len(lst_to_sort)):
@@ -104,14 +112,34 @@ def sort_dict_in_lst_form(lst_of_key_and_values:list[list[str, float]]) -> list[
             lst_to_sort[iteration] = temp
     return lst_to_sort
 
+# Purpose: to take in a dictionary of [str: float]
+def get_dict_in_lst_form(any_dict:dict[str, float]) -> list[list[str, float]]:
+    lst_of_dict = []
+    for key in any_dict:
+        lst_of_dict.append([key, any_dict[key]])
+    return lst_of_dict
+
+def get_lst_in_dict_form(any_lst:list[list[str, float]]) -> dict[str, float]:
+    lst_of_dict = {}
+    for key_value in any_lst:
+        lst_of_dict[key_value[0]] = key_value[1]
+    return lst_of_dict
+
+# Purpose: to take in a dictionary of city keys and floats of CO2 emissions per day, sort them from least
+#   to greatest CO2 emissions per day, and return a dictionary that is sorted
+# Input: dict[str, float] ({city: CO2 Emission Per Day})
+# Output: dict[str, float] ({city: CO2 Emission Per Day})
+# ExInput: {'Chicago': 584325.26, 'Los Angeles': 805112.167, 'New York City': 1646340.0885,
+#   'San Francisco': 289827.66000000003, 'Seattle': 295829.04}
+# ExOutput: {'San Francisco': 289827.66000000003, 'Seattle': 295829.04,
+#   'Chicago': 584325.26, 'Los Angeles': 805112.167, 'New York City': 1646340.0885}
+# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_of_city_co2_per_day)
+#   sort list -> call sort_dict_in_lst_form(lst_city_co2_per_day)
+#   get into dictionary -> call get_lst_in_dict_form(lst_city_co2_per_day)
 def sort_city_co2_per_day(dic_of_city_co2_per_day:dict[str, float]) -> dict[str, float]:
-    lst_city_co2_per_day = []
-    for key in dic_of_city_co2_per_day:
-        lst_city_co2_per_day.append([key, dic_of_city_co2_per_day[key]])
+    lst_city_co2_per_day = get_dict_in_lst_form(dic_of_city_co2_per_day)
     lst_city_co2_per_day = sort_dict_in_lst_form(lst_city_co2_per_day)
-    dict_city_co2_per_day = {}
-    for key_value in lst_city_co2_per_day:
-        dict_city_co2_per_day[key_value[0]] = key_value[1]
+    dict_city_co2_per_day = get_lst_in_dict_form(lst_city_co2_per_day)
     return dict_city_co2_per_day
 
 
