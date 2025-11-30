@@ -34,14 +34,6 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(actual, expected)
         print("Unsorted:", actual)
 
-    def test_get_city_co2_per_day2(self):
-        input1 = full_data
-        actual = transitfunctions.get_city_co2_per_day(input1)
-        expected = {'New York City': 1646340.0885, 'Chicago': 584325.26, 'Seattle': 295829.04,
-                    'Los Angeles': 805112.167, 'San Francisco': 289827.66000000003}
-        self.assertEqual(actual, expected)
-        print("Unsorted:", actual)
-
     def test_sort_city_co2_per_day(self):
         input1 = full_data
         input2 = transitfunctions.get_city_co2_per_day(input1)
@@ -67,3 +59,20 @@ class UnitTests(unittest.TestCase):
                     'Light Rail-electric': 912715.2225000001, 'Bus-diesel': 2163998.7199999997}
         self.assertEqual(sort, expected)
         print("Sorted:", sort)
+
+    def test_get_daily_riders_for_each_mode_metric(self):
+        input1 = full_data
+        actual = transitfunctions.get_daily_riders_for_each_mode_metric(input1)
+        expected = {'Bus-diesel': 2494300.0, 'Heavy Rail-diesel': 625.0, 'Heavy Rail-electric': 457390.0,
+                    'Light Rail-electric': 3431750.0}
+        self.assertEqual(actual, expected)
+        print("Daily Riders:", actual)
+
+    def test_get_co2_per_passenger_by_mode_metric(self):
+        input1 = full_data
+        dict_of_rider_mode_metric = transitfunctions.get_daily_riders_for_each_mode_metric(input1)
+        dict_of_co2_mode_metric = transitfunctions.get_mode_metric_co2_per_day(input1)
+        actual = transitfunctions.get_co2_per_passenger_by_mode_metric(dict_of_co2_mode_metric, dict_of_rider_mode_metric)
+        expected = {}
+        self.assertEqual(actual, expected)
+        print("Co2 per passengers by mode:", actual)

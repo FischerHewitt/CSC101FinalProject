@@ -27,6 +27,9 @@ def get_co2_per_vehicle_mile(mode:Transportations) -> float:
 def get_co2_per_passenger_mile(mode:Transportations) -> float:
     return get_co2_per_vehicle_mile(mode)/mode.passengers['avg on board']
 
+#def get_mile_per_passenger(mode:Transportations) -> float:
+    return mode.dailymiles/mode.passengers['avg on board']
+
 # This Might be worthless
 '''def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Transportations]:
     sort_lst_of_cos_per_vehicle_mile = lst_of_transport
@@ -94,6 +97,26 @@ def get_mode_metric_co2_per_day(lst_of_transport3:list[Transportations]) -> dict
             dict_of_mode_co2_per_day[name] += (get_co2_per_vehicle_mile(lst_of_transport3[idx]) *
                                                                      lst_of_transport3[idx].dailymiles)
     return dict_of_mode_co2_per_day
+
+def get_daily_riders_for_each_mode_metric(lst_of_transport4:list[Transportations]) -> dict[str, float]:
+    dict_of_daily_riders_for_each_mode = {}
+    for idx in range(len(lst_of_transport4)):
+        name = str(lst_of_transport4[idx].mode) + "-" + str(lst_of_transport4[idx].energy['metric'])
+        if name not in dict_of_daily_riders_for_each_mode:
+            dict_of_daily_riders_for_each_mode[name] = lst_of_transport4[idx].passengers['avg daily riders']
+        else:
+            dict_of_daily_riders_for_each_mode[name] += lst_of_transport4[idx].passengers['avg daily riders']
+
+    return dict_of_daily_riders_for_each_mode
+
+def get_co2_per_passenger_by_mode_metric(dict_of_co2_per_day_mode_metric:dict[str, float], dict_of_daily_riders_mode_metric:dict[str, float]) -> dict[str, float]:
+    dict_of_co2_per_passenger_by_mode = {}
+    for key in dict_of_co2_per_day_mode_metric:
+        dict_of_co2_per_passenger_by_mode[key] = dict_of_co2_per_day_mode_metric[key]/dict_of_daily_riders_mode_metric[key]
+
+    return dict_of_co2_per_passenger_by_mode
+
+
 
 # Purpose: to take in a list of lists that has str and float values (to imitate a dictionary) and sort the
 #   list of list based on the float values
