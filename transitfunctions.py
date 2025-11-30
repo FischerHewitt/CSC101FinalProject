@@ -181,9 +181,9 @@ def sort_city_co2_per_day(dic_of_city_co2_per_day:dict[str, float]) -> dict[str,
 #         'Heavy Rail-electric': 519218.67299999995, 'Light Rail-electric': 912715.2225000001}
 # ExOutput: {'Heavy Rail-diesel': 25501.6, 'Heavy Rail-electric': 519218.67299999995,
 #             'Light Rail-electric': 912715.2225000001, 'Bus-diesel': 2163998.7199999997}
-# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_of_city_co2_per_day)
-#   sort list -> call sort_dict_in_lst_form(lst_city_co2_per_day)
-#   get into dictionary -> call get_lst_in_dict_form(lst_city_co2_per_day)
+# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_of_mode_metric_co2_per_day)
+#   sort list -> call sort_dict_in_lst_form(lst_mode_metric_co2_per_day)
+#   get into dictionary -> call get_lst_in_dict_form(lst_mode_metric_co2_per_day)
 def sort_mode_metric_co2_per_day(dic_of_mode_metric_co2_per_day:dict[str, float]) -> dict[str, float]:
     lst_mode_metric_co2_per_day = get_dict_in_lst_form(dic_of_mode_metric_co2_per_day)
     lst_mode_metric_co2_per_day = sort_dict_in_lst_form(lst_mode_metric_co2_per_day)
