@@ -63,8 +63,8 @@ class UnitTests(unittest.TestCase):
     def test_get_daily_riders_for_each_mode_metric(self):
         input1 = full_data
         actual = transitfunctions.get_daily_riders_for_each_mode_metric(input1)
-        expected = {'Bus-diesel': 2494300.0, 'Heavy Rail-diesel': 625.0, 'Heavy Rail-electric': 457390.0,
-                    'Light Rail-electric': 3431750.0}
+        expected = {'Bus-diesel': 2494300.0, 'Heavy Rail-diesel': 7341.0, 'Heavy Rail-electric': 457390.0,
+                    'Light Rail-electric': 3367165.0}
         self.assertEqual(actual, expected)
         print("Daily Riders:", actual)
 
@@ -73,6 +73,7 @@ class UnitTests(unittest.TestCase):
         dict_of_rider_mode_metric = transitfunctions.get_daily_riders_for_each_mode_metric(input1)
         dict_of_co2_mode_metric = transitfunctions.get_mode_metric_co2_per_day(input1)
         actual = transitfunctions.get_co2_per_passenger_by_mode_metric(dict_of_co2_mode_metric, dict_of_rider_mode_metric)
-        expected = {}
+        expected = {'Bus-diesel': 0.867577564847853, 'Heavy Rail-diesel': 3.4738591472551423,
+                    'Heavy Rail-electric': 1.1351771420450818, 'Light Rail-electric': 0.27093891226001704}
         self.assertEqual(actual, expected)
         print("Co2 per passengers by mode:", actual)

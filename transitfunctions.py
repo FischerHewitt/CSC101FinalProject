@@ -73,6 +73,7 @@ def get_co2_per_passenger_mile(mode:Transportations) -> float:
 # determine if it is in the dictionary -> if statement
 #   add to the dictionary -> dict[lst_of_transport[idx].city] = (get_co2_per_vehicle_mile(lst_of_transport[idx])*
 #                                                                      lst_of_transport[idx].dailymiles)
+#       city = (kgCO2/mile) * daily miles = (kgCO2/per day)
 #   add to the value in the dictionary -> dict[lst_of_transport[idx].city] += (get_co2_per_vehicle_mile(lst_of_transport[idx])*
 #                   lst_of_transport[idx].dailymiles)
 def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, float]:
@@ -86,6 +87,22 @@ def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, f
             dict_of_city_co2_per_day[lst_of_transport2[idx].city] += co2_per_day
     return dict_of_city_co2_per_day
 
+# Purpose: to take in a list of transportation objects, and return a dictionary
+#   containing the mode-metric and the carbon emissions per day
+# Input: list[Transportations]
+# Output: dict[str, float]
+# ExInput: data.get_data()
+# ExOutput: {'Bus-diesel': 2163998.7199999997, 'Heavy Rail-diesel': 25501.6,
+#      'Heavy Rail-electric': 519218.67299999995, 'Light Rail-electric': 912715.2225000001}
+# how to do: create an empty dictionary -> = {}
+# go through each item in the list -> for loop
+# create the key for each -> lst_of_transport3[idx].mode + "-" + lst_of_transport3[idx].energy['metric']
+# determine if it is in the dictionary -> if statement
+#   add to the dictionary -> dict_of_mode_co2_per_day[name] = (get_co2_per_vehicle_mile(lst_of_transport3[idx])*
+#                                                                      lst_of_transport3[idx].dailymiles)
+#     mode-metric = (kgco2/mile) * daily miles = (kgCO2/per day)
+#   add to the value in the dictionary -> dict_of_mode_co2_per_day[name] += (get_co2_per_vehicle_mile(lst_of_transport3[idx]) *
+#                                                                      lst_of_transport3[idx].dailymiles)
 def get_mode_metric_co2_per_day(lst_of_transport3:list[Transportations]) -> dict[str, float]:
     dict_of_mode_co2_per_day = {}
     for idx in range(len(lst_of_transport3)):
@@ -98,6 +115,19 @@ def get_mode_metric_co2_per_day(lst_of_transport3:list[Transportations]) -> dict
                                                                      lst_of_transport3[idx].dailymiles)
     return dict_of_mode_co2_per_day
 
+# Purpose: to take in a list of transportation objects, and return a dictionary
+#   containing the mode-metric and the daily riders per day
+# Input: list[Transportations]
+# Output: dict[str, float]
+# ExInput: data.get_data()
+# ExOutput: {'Bus-diesel': 2494300.0, 'Heavy Rail-diesel': 7341.0, 'Heavy Rail-electric': 457390.0,
+#                     'Light Rail-electric': 3367165.0}
+# how to do: create an empty dictionary -> = {}
+# go through each item in the list -> for loop
+# create the key for each -> lst_of_transport4[idx].mode + "-" + lst_of_transport4[idx].energy['metric']
+# determine if it is in the dictionary -> if statement
+#   add to the dictionary -> dict_of_mode_co2_per_day[name] = lst_of_transport4[idx].passengers['avg daily riders']
+#   add to the value in the dictionary -> dict_of_daily_riders_for_each_mode[name] += lst_of_transport4[idx].passengers['avg daily riders']
 def get_daily_riders_for_each_mode_metric(lst_of_transport4:list[Transportations]) -> dict[str, float]:
     dict_of_daily_riders_for_each_mode = {}
     for idx in range(len(lst_of_transport4)):
@@ -221,3 +251,4 @@ def sort_mode_metric_co2_per_day(dic_of_mode_metric_co2_per_day:dict[str, float]
 #   and which transportation mode had the least carbon footprint per mile and per day
 #   which city had the least carbon footprint in relation to the passengers
 #   which mode had the least carbon footprint in relation to the passengers
+# testing branches
