@@ -75,13 +75,25 @@ def get_co2_per_passenger_mile(mode:Transportations) -> float:
 def get_city_co2_per_day(lst_of_transport2:list[Transportations]) -> dict[str, float]:
     dict_of_city_co2_per_day = {}
     for idx in range(len(lst_of_transport2)):
+        co2_per_day = (get_co2_per_vehicle_mile(lst_of_transport2[idx]) *
+               lst_of_transport2[idx].dailymiles)
         if lst_of_transport2[idx].city not in dict_of_city_co2_per_day:
-            dict_of_city_co2_per_day[lst_of_transport2[idx].city] = (get_co2_per_vehicle_mile(lst_of_transport2[idx])*
-                                                                     lst_of_transport2[idx].dailymiles)
+            dict_of_city_co2_per_day[lst_of_transport2[idx].city] = co2_per_day
         else:
-            dict_of_city_co2_per_day[lst_of_transport2[idx].city] += (get_co2_per_vehicle_mile(lst_of_transport2[idx]) *
-                                                                     lst_of_transport2[idx].dailymiles)
+            dict_of_city_co2_per_day[lst_of_transport2[idx].city] += co2_per_day
     return dict_of_city_co2_per_day
+
+def get_mode_metric_co2_per_day(lst_of_transport3:list[Transportations]) -> dict[str, float]:
+    dict_of_mode_co2_per_day = {}
+    for idx in range(len(lst_of_transport3)):
+        name = str(lst_of_transport3[idx].mode) + "-" + str(lst_of_transport3[idx].energy['metric'])
+        if name not in dict_of_mode_co2_per_day:
+            dict_of_mode_co2_per_day[name] = (get_co2_per_vehicle_mile(lst_of_transport3[idx])*
+                                                                     lst_of_transport3[idx].dailymiles)
+        else:
+            dict_of_mode_co2_per_day[name] += (get_co2_per_vehicle_mile(lst_of_transport3[idx]) *
+                                                                     lst_of_transport3[idx].dailymiles)
+    return dict_of_mode_co2_per_day
 
 # Purpose: to take in a list of lists that has str and float values (to imitate a dictionary) and sort the
 #   list of list based on the float values
@@ -160,6 +172,23 @@ def sort_city_co2_per_day(dic_of_city_co2_per_day:dict[str, float]) -> dict[str,
     lst_city_co2_per_day = sort_dict_in_lst_form(lst_city_co2_per_day)
     dict_city_co2_per_day = get_lst_in_dict_form(lst_city_co2_per_day)
     return dict_city_co2_per_day
+
+# Purpose: to take in a dictionary of mode-metric keys and floats of CO2 emissions per day, sort them from least
+#   to greatest CO2 emissions per day, and return a dictionary that is sorted
+# Input: dict[str, float] ({mode-metric: CO2 Emission Per Day})
+# Output: dict[str, float] ({mode-metric: CO2 Emission Per Day})
+# ExInput: {'Bus-diesel': 2163998.7199999997, 'Heavy Rail-diesel': 25501.6,
+#         'Heavy Rail-electric': 519218.67299999995, 'Light Rail-electric': 912715.2225000001}
+# ExOutput: {'Heavy Rail-diesel': 25501.6, 'Heavy Rail-electric': 519218.67299999995,
+#             'Light Rail-electric': 912715.2225000001, 'Bus-diesel': 2163998.7199999997}
+# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_of_city_co2_per_day)
+#   sort list -> call sort_dict_in_lst_form(lst_city_co2_per_day)
+#   get into dictionary -> call get_lst_in_dict_form(lst_city_co2_per_day)
+def sort_mode_metric_co2_per_day(dic_of_mode_metric_co2_per_day:dict[str, float]) -> dict[str, float]:
+    lst_mode_metric_co2_per_day = get_dict_in_lst_form(dic_of_mode_metric_co2_per_day)
+    lst_mode_metric_co2_per_day = sort_dict_in_lst_form(lst_mode_metric_co2_per_day)
+    dict_mode_metric_co2_per_day = get_lst_in_dict_form(lst_mode_metric_co2_per_day)
+    return dict_mode_metric_co2_per_day
 
 
 
