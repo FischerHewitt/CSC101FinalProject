@@ -109,6 +109,17 @@ def get_daily_riders_for_each_mode_metric(lst_of_transport4:list[Transportations
 
     return dict_of_daily_riders_for_each_mode
 
+# Purpose: to take in 2 dictionaries, a dictionary of {mode-metric: kgCO2 per day} and {mode-metric: # of daily riders}
+#   and return a dictionary of {mode-metric: kgCO2/passenger)
+# Input: dict[str, float], dict[str, float]
+# Output: dict[str, float]
+# ExInput: {Heavy Rail-diesel: 25501.6}, {{Heavy Rail-diesel: 7341}
+# ExOutput: {Heavy Rail-diesel: 3.47385914726}
+# how to do: (kgCO2/day)/(Passenger/day) = (kgCO2/day)*(day/passenger) = kgCO2/passenger
+# create an empty dictionary -> empty = {}
+# go through each key in one of the dictionaries -> for loop
+# add to the empty dictionary -> empty[key] = value
+#    = dict_of_co2_per_day_mode_metric[key]/dict_of_daily_riders_mode_metric[key]
 def get_co2_per_passenger_by_mode_metric(dict_of_co2_per_day_mode_metric:dict[str, float], dict_of_daily_riders_mode_metric:dict[str, float]) -> dict[str, float]:
     dict_of_co2_per_passenger_by_mode = {}
     for key in dict_of_co2_per_day_mode_metric:
