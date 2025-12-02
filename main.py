@@ -194,6 +194,21 @@ def prt_max_co2_per_passenger() -> None:
     for key in max_co2:
         print("{}:{} kgCO2/passenger-mile".format(key,max_co2[key]))
 
+# Purpose: to print the lowest CO2 per passenger-mile and its mode-metric
+# Input: None
+# Output: None
+# ExInput: None
+# ExOutput: None
+# How to do: get min co2 per passenger-mile -> call min_co2_per_passenger(full_data)
+#   print -> print("Least CO2 per passenger-mile:")
+#   go through each key in dict -> for loop
+#   print key and value -> print("{}:{} kgCO2/passenger-mile".format(key, min_co2[key]))
+def prt_min_co2_per_passenger() -> None:
+    min_co2 = transitfunctions.min_co2_per_passenger(full_data)
+    print("Least CO2 per passenger-mile:")
+    for key in min_co2:
+        print("{}:{} kgCO2/passenger-mile".format(key,min_co2[key]))
+
 # Purpose: to print a social reflection about the CO2 emission results
 # Input: None
 # Output: None
@@ -232,6 +247,7 @@ def main():
     prt_sort_co2_per_passenger_by_mode_metric()
     prt_sort_co2_per_passenger_by_city()
     prt_max_co2_per_passenger()
+    prt_min_co2_per_passenger()
     prt_social_reflection()
 
 

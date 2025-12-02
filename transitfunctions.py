@@ -353,5 +353,21 @@ def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, 
             max_mode = f"{t.mode}-{t.energy['metric']}"
 
     return {max_mode: max_value}
+
+#Purpose: to find which transportation emits the most CO2
+#Input: list of transport
+#output: dict: str, float
+#ExOutput: "Least-emitting mode;" CO2 per passenger
+def min_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, float]:
+    min_mode = None
+    min_value = -1.0
+
+    for t in lst_of_transport:
+        co2 = get_co2_per_passenger_mile(t)
+        if co2 < min_value:
+            min_value = co2
+            min_mode = f"{t.mode}-{t.energy['metric']}"
+
+    return {min_mode: min_value}
 #done
 
