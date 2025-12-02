@@ -30,36 +30,6 @@ def get_co2_per_passenger_mile(mode:Transportations) -> float:
 #def get_mile_per_passenger(mode:Transportations) -> float:
     return mode.dailymiles/mode.passengers['avg on board']
 
-# This Might be worthless
-'''def sort_co2_per_vehicle_mile(lst_of_transport:list[Transportations]) -> list[Transportations]:
-    sort_lst_of_cos_per_vehicle_mile = lst_of_transport
-    for iterations in range(len(sort_lst_of_cos_per_vehicle_mile)-1):
-        min_idx = iterations
-        for idx in range(iterations, len(sort_lst_of_cos_per_vehicle_mile)):
-            if (get_co2_per_vehicle_mile(sort_lst_of_cos_per_vehicle_mile[idx]) <
-                    get_co2_per_vehicle_mile(sort_lst_of_cos_per_vehicle_mile[min_idx])):
-                min_idx = idx
-        if min_idx != iterations:
-            temp = sort_lst_of_cos_per_vehicle_mile[min_idx]
-            sort_lst_of_cos_per_vehicle_mile[min_idx] = sort_lst_of_cos_per_vehicle_mile[iterations]
-            sort_lst_of_cos_per_vehicle_mile[iterations] = temp
-    return sort_lst_of_cos_per_vehicle_mile'''
-
-# This might be worthless
-'''def sort_co2_per_passenger_mile(lst_of_transport1:list[Transportations]) -> list[Transportations]:
-    sort_lst_of_cos_per_passenger_mile1 = lst_of_transport1
-    for iterations in range(len(sort_lst_of_cos_per_passenger_mile1)-1):
-        min_idx = iterations
-        for idx in range(iterations, len(sort_lst_of_cos_per_passenger_mile1)):
-            if (get_co2_per_passenger_mile(sort_lst_of_cos_per_passenger_mile1[idx]) <
-                    get_co2_per_passenger_mile(sort_lst_of_cos_per_passenger_mile1[min_idx])):
-                min_idx = idx
-        if min_idx != iterations:
-            temp = sort_lst_of_cos_per_passenger_mile1[min_idx]
-            sort_lst_of_cos_per_passenger_mile1[min_idx] = sort_lst_of_cos_per_passenger_mile1[iterations]
-            sort_lst_of_cos_per_passenger_mile1[iterations] = temp
-    return sort_lst_of_cos_per_passenger_mile1'''
-
 # Purpose: to take in a list of transportation objects, and return a dictionary
 #   containing the city and the carbon emissions per day
 # Input: list[Transportations]
