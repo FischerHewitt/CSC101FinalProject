@@ -223,7 +223,7 @@ def prt_social_reflection() -> None:
           "CO2 per passenger per day. When we look by city, New York has the highest CO2 emissions per day, however"
           "it has the lowest emissions per passengers. Seattle has the cleanest mode of transportation with its"
           "Light Rail only emitting 0.02 kg CO2/per mile, however Seattle has a higher kg CO2 per rider. Our analysis"
-          "suggest that to optimize the amount of clean energy used, you ned to have cleaner modes and lots of riders."
+          "suggest that to optimize the amount of clean energy used, you need to have cleaner modes and lots of riders."
           "From the limited data we have collected, it seems that a combination of Seattle light rail, and number of"
           "riders from New York should be implemented in cities to lower the per-passenger emissions and total emissions.")
 
