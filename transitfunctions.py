@@ -120,6 +120,17 @@ def get_daily_riders_for_each_mode_metric(lst_of_transport4:list[Transportations
 
     return dict_of_daily_riders_for_each_mode
 
+def get_daily_riders_city(lst_of_transport5:list[Transportations]) -> dict[str, float]:
+    dict_of_daily_riders_for_city = {}
+    for idx in range(len(lst_of_transport5)):
+        name = lst_of_transport5[idx].city
+        if name not in dict_of_daily_riders_for_city:
+            dict_of_daily_riders_for_city[name] = lst_of_transport5[idx].passengers['avg daily riders']
+        else:
+            dict_of_daily_riders_for_city[name] += lst_of_transport5[idx].passengers['avg daily riders']
+
+    return dict_of_daily_riders_for_city
+
 # Purpose: to take in 2 dictionaries, a dictionary of {mode-metric: kgCO2 per day} and {mode-metric: # of daily riders}
 #   and return a dictionary of {mode-metric: kgCO2/passenger)
 # Input: dict[str, float], dict[str, float]
@@ -138,7 +149,12 @@ def get_co2_per_passenger_by_mode_metric(dict_of_co2_per_day_mode_metric:dict[st
 
     return dict_of_co2_per_passenger_by_mode
 
+def get_co2_per_passenger_by_city(dict_of_co2_per_day_city:dict[str, float], dict_of_daily_riders_mode_metric:dict[str, float]) -> dict[str, float]:
+    dict_of_co2_per_passenger_by_city = {}
+    for key in dict_of_co2_per_day_city:
+        dict_of_co2_per_passenger_by_city[key] = dict_of_co2_per_day_city[key]/dict_of_daily_riders_mode_metric[key]
 
+    return dict_of_co2_per_passenger_by_city
 
 # Purpose: to take in a list of lists that has str and float values (to imitate a dictionary) and sort the
 #   list of list based on the float values

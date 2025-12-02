@@ -56,10 +56,31 @@ def prt_sort_co2_per_passenger_by_mode_metric() -> None:
     dict_of_daily_riders = transitfunctions.get_daily_riders_for_each_mode_metric(input1)
     dict_of_co2_per_passenger_by_mode_metric = transitfunctions.get_co2_per_passenger_by_mode_metric(dict_co2_per_day_mode_metric, dict_of_daily_riders)
     sort = transitfunctions.sort_co2_per_passenger_by_mode_metric(dict_of_co2_per_passenger_by_mode_metric)
-    co2_per_passenger_str = get_string_for_co2_per_passenger(sort)
+    co2_per_passenger_modemetric_str = get_string_for_co2_per_passenger(sort)
     print("CO2 Per Passenger by Mode across all cities:")
-    print(co2_per_passenger_str)
+    print(co2_per_passenger_modemetric_str)
+
+def prt_sort_co2_per_passenger_by_city() -> None:
+    input1 = full_data
+    dict_co2_per_day_city = transitfunctions.get_city_co2_per_day(input1)
+    dict_of_daily_riders = transitfunctions.get_daily_riders_city(input1)
+    dict_of_co2_per_passenger_by_city = transitfunctions.get_co2_per_passenger_by_city(dict_co2_per_day_city, dict_of_daily_riders)
+    sort = transitfunctions.sort_co2_per_passenger_by_mode_metric(dict_of_co2_per_passenger_by_city)
+    co2_per_passenger_city_str = get_string_for_co2_per_passenger(sort)
+    print("CO2 Per Passenger by City:")
+    print(co2_per_passenger_city_str)
+
+def main():
+    prt_sort_city_mode_metric_co2_per_mile()
+    prt_sort_mode_metric_co2_per_day()
+    prt_sort_city_co2_per_day()
+    prt_sort_co2_per_passenger_by_mode_metric()
+    prt_sort_co2_per_passenger_by_city()
 
 
-prt_sort_co2_per_passenger_by_mode_metric()
+if __name__ == "__main__":
+    main()
+
+
+
 
