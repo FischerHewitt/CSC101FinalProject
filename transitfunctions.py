@@ -147,11 +147,6 @@ def sort_dict_in_lst_form(lst_of_key_and_values:list[list[str, float]]) -> list[
             lst_to_sort[iteration] = temp
     return lst_to_sort
 
-
-#hello
-#testing
-def sort
-
 # Purpose: to take in a dictionary of [str: float] and return a list of lists with [string, float] pairs
 # Input: dict[str, float]
 # Output: list[list[str, float]]
@@ -218,6 +213,21 @@ def sort_mode_metric_co2_per_day(dic_of_mode_metric_co2_per_day:dict[str, float]
     dict_mode_metric_co2_per_day = get_lst_in_dict_form(lst_mode_metric_co2_per_day)
     return dict_mode_metric_co2_per_day
 
+#Purpose: to find which transportation emits the most CO2
+#Input: list of transport
+#output: dict: str, float
+#ExOutput: "Highest-emitting mode;" CO2 per passenger
+def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, float]:
+    max_mode = None
+    max_value = -1
+
+    for t in lst_of_transport:
+        co2 = max_co2_per_passenger(t)
+        if co2 > max_value:
+            max_value = co2
+            max_mode = f"{t.mode}-{t.energy['metric']}"
+
+    return {max_mode: max_value}
 
 
 # for each sorted list we assign point value to add to a dictionary, and then at the end we could display multiple
