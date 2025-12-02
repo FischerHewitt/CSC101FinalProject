@@ -360,7 +360,7 @@ def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, 
 #ExOutput: "Least-emitting mode;" CO2 per passenger
 def min_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, float]:
     min_mode = None
-    min_value = -1.0
+    min_value = get_co2_per_passenger_mile(lst_of_transport[0])
 
     for t in lst_of_transport:
         co2 = get_co2_per_passenger_mile(t)

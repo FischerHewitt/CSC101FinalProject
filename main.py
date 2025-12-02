@@ -205,7 +205,7 @@ def prt_max_co2_per_passenger() -> None:
 #   print key and value -> print("{}:{} kgCO2/passenger-mile".format(key, min_co2[key]))
 def prt_min_co2_per_passenger() -> None:
     min_co2 = transitfunctions.min_co2_per_passenger(full_data)
-    print("Least CO2 per passenger-mile:")
+    print("\nLeast CO2 per passenger-mile:")
     for key in min_co2:
         print("{}:{} kgCO2/passenger-mile".format(key,min_co2[key]))
 
