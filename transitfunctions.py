@@ -350,7 +350,7 @@ def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, 
         co2 = get_co2_per_passenger_mile(t)
         if co2 > max_value:
             max_value = co2
-            max_mode = f"{t.mode}-{t.energy['metric']}"
+            max_mode = f"{t.city}-{t.mode}-{t.energy['metric']}"
 
     return {max_mode: max_value}
 
@@ -366,7 +366,7 @@ def min_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, 
         co2 = get_co2_per_passenger_mile(t)
         if co2 < min_value:
             min_value = co2
-            min_mode = f"{t.mode}-{t.energy['metric']}"
+            min_mode = f"{t.city}-{t.mode}-{t.energy['metric']}"
 
     return {min_mode: min_value}
 #done
