@@ -229,7 +229,6 @@ def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, 
 
     return {max_mode: max_value}
 
-
 # for each sorted list we assign point value to add to a dictionary, and then at the end we could display multiple
 #   or just code these and bypass the sorting
 #   dictionaries of which city had the least carbon footprint per day
