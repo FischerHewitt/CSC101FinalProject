@@ -321,6 +321,17 @@ def sort_mode_metric_co2_per_day(dic_of_mode_metric_co2_per_day:dict[str, float]
     dict_mode_metric_co2_per_day = get_lst_in_dict_form(lst_mode_metric_co2_per_day)
     return dict_mode_metric_co2_per_day
 
+# Purpose: to take in a dictionary of mode-metric keys and floats of CO2 emissions per passenger, sort them from least
+#   to greatest CO2 emissions per passenger, and return a dictionary that is sorted
+# Input: dict[str, float] ({mode-metric: CO2 Emission Per Passenger})
+# Output: dict[str, float] ({mode-metric: CO2 Emission Per Passenger})
+# ExInput: {'Bus-diesel': 0.867577564847853, 'Heavy Rail-diesel': 3.4738591472551423,
+# 'Heavy Rail-electric': 1.1351771420450818, 'Light Rail-electric': 0.27093891226001704}
+# ExOutput: {'Bus-diesel': 0.867577564847853, 'Heavy Rail-diesel': 3.4738591472551423,
+# 'Heavy Rail-electric': 1.1351771420450818, 'Light Rail-electric': 0.27093891226001704}
+# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_co2_per_passenger_by_mode_metric)
+#   sort list -> call sort_dict_in_lst_form(lst_co2_per_passenger_by_mode_metric)
+#   get into dictionary -> call get_lst_in_dict_form(lst_co2_per_passenger_by_mode_metric)
 def sort_co2_per_passenger_by_mode_metric(dic_co2_per_passenger_by_mode_metric:dict[str, float]) -> dict[str, float]:
     lst_co2_per_passenger_by_mode_metric = get_dict_in_lst_form(dic_co2_per_passenger_by_mode_metric)
     lst_co2_per_passenger_by_mode_metric = sort_dict_in_lst_form(lst_co2_per_passenger_by_mode_metric)
