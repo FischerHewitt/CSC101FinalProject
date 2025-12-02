@@ -201,7 +201,7 @@ def prt_max_co2_per_passenger() -> None:
 # ExOutput: None
 # How to do: print -> print("Social reflection:")
 def prt_social_reflection() -> None:
-    print("Social reflection:")
+    print("\nSocial reflection:")
     print("Our project analyzes CO2 emissions from public transportations modes in San Francisco, Seattle, Chicago, "
           "Los Angeles, and New York City. The results show that electric light rail is the most efficient mode"
           "at about 0.27 kg CO2 per passenger per day, while diesel heavy rail is the worst, at around 3.47 kg "
