@@ -24,12 +24,27 @@ def get_co2_per_vehicle_mile(mode:Transportations) -> float:
 #   passengers:{'avg on board': 13.6, 'avg pass trip': 3.6, 'avg daily riders': 1166000.0},
 #   dailymiles:313800.0)
 # ExOutput: 0.22411764705882
+# how to do: divide co2 per vehicle mile by average passenger on board
+#   access class attribute passengers -> .passengers
+#   access dictionary value -> key = ['avg on board']
+#   get co2 per vehicle mile -> call get_co2_per_vehicle_mile
 def get_co2_per_passenger_mile(mode:Transportations) -> float:
     return get_co2_per_vehicle_mile(mode)/mode.passengers['avg on board']
 
-#def get_mile_per_passenger(mode:Transportations) -> float:
-    return mode.dailymiles/mode.passengers['avg on board']
 
+# Purpose: to take in a list of transportations and return a dictionary of mode-metric and
+#   their associated kgCO2 per mile {mode-metric: kgCO2/mile}
+#   # Input: list[Transportations]
+# # Output: dict[str, float]
+# # ExInput: [data.get_data()[0], data.get_data()[1], data.get_data()[2]]
+# # ExOutput: {'New York City, Bus-diesel': 3.048, 'New York City, Light Rail-electric': 0.98175,
+#                 'New York City, Heavy Rail-electric': 1.06029,
+# # how to do: create an empty dictionary -> empty = {}
+# # go through each item in the list -> for loop
+# # determine if it is in the dictionary -> if statement
+# #   add to the dictionary -> dict[key] = value
+# #       co2 per mile = call get_co2_per_vehicle_mile
+# #   add to the value in the dictionary -> dict[key] += value
 def get_city_mode_metric_co2_per_mile(lst_of_transport1:list[Transportations]) -> dict[str, float]:
     dict_of_city_mode_metric_co2_per_mile = {}
     for idx in range(len(lst_of_transport1)):
@@ -120,6 +135,19 @@ def get_daily_riders_for_each_mode_metric(lst_of_transport4:list[Transportations
 
     return dict_of_daily_riders_for_each_mode
 
+# Purpose: to take in a list of transportation objects, and return a dictionary
+#   containing the city and the daily riders per day
+# Input: list[Transportations]
+# Output: dict[str, float]
+# ExInput: data.get_data()
+# ExOutput: {'New York City': 4315000.0, 'Chicago': 730100.0, 'Seattle': 181556.0, 'Los Angeles': 703480.0,
+#                     'San Francisco': 396060.0}
+# how to do: create an empty dictionary -> = {}
+# go through each item in the list -> for loop
+# create the key for each -> lst_of_transport[idx].city
+# determine if it is in the dictionary -> if statement
+#   add to the dictionary -> dict_of_mode_co2_per_day[name] = lst_of_transport4[idx].passengers['avg daily riders']
+#   add to the value in the dictionary -> dict_of_daily_riders_for_each_mode[name] += lst_of_transport4[idx].passengers['avg daily riders']
 def get_daily_riders_city(lst_of_transport5:list[Transportations]) -> dict[str, float]:
     dict_of_daily_riders_for_city = {}
     for idx in range(len(lst_of_transport5)):
@@ -135,7 +163,7 @@ def get_daily_riders_city(lst_of_transport5:list[Transportations]) -> dict[str, 
 #   and return a dictionary of {mode-metric: kgCO2/passenger)
 # Input: dict[str, float], dict[str, float]
 # Output: dict[str, float]
-# ExInput: {Heavy Rail-diesel: 25501.6}, {{Heavy Rail-diesel: 7341}
+# ExInput: {Heavy Rail-diesel: 25501.6}, {Heavy Rail-diesel: 7341}
 # ExOutput: {Heavy Rail-diesel: 3.47385914726}
 # how to do: (kgCO2/day)/(Passenger/day) = (kgCO2/day)*(day/passenger) = kgCO2/passenger
 # create an empty dictionary -> empty = {}
@@ -149,10 +177,21 @@ def get_co2_per_passenger_by_mode_metric(dict_of_co2_per_day_mode_metric:dict[st
 
     return dict_of_co2_per_passenger_by_mode
 
-def get_co2_per_passenger_by_city(dict_of_co2_per_day_city:dict[str, float], dict_of_daily_riders_mode_metric:dict[str, float]) -> dict[str, float]:
+# Purpose: to take in 2 dictionaries, a dictionary of {city: kgCO2 per day} and {city: # of daily riders}
+#   and return a dictionary of {city: kgCO2/passenger)
+# Input: dict[str, float], dict[str, float]
+# Output: dict[str, float]
+# ExInput: {'New York City': 1646340.0885}, {'New York City': 4315000}
+# ExOutput: {'New York City': 0.38153883858632676}
+# how to do: (kgCO2/day)/(Passenger/day) = (kgCO2/day)*(day/passenger) = kgCO2/passenger
+# create an empty dictionary -> empty = {}
+# go through each key in one of the dictionaries -> for loop
+# add to the empty dictionary -> empty[key] = value
+#    = dict_of_co2_per_day_city[key]/dict_of_daily_riders_city[key]
+def get_co2_per_passenger_by_city(dict_of_co2_per_day_city:dict[str, float], dict_of_daily_riders_city:dict[str, float]) -> dict[str, float]:
     dict_of_co2_per_passenger_by_city = {}
     for key in dict_of_co2_per_day_city:
-        dict_of_co2_per_passenger_by_city[key] = dict_of_co2_per_day_city[key]/dict_of_daily_riders_mode_metric[key]
+        dict_of_co2_per_passenger_by_city[key] = dict_of_co2_per_day_city[key]/dict_of_daily_riders_city[key]
 
     return dict_of_co2_per_passenger_by_city
 
@@ -217,6 +256,31 @@ def get_lst_in_dict_form(any_lst:list[list[str, float]]) -> dict[str, float]:
         lst_of_dict[key_value[0]] = key_value[1]
     return lst_of_dict
 
+# Purpose: to take in a dictionary of mode-metric keys and floats of CO2 emissions per mile, sort them from least
+#   to greatest CO2 emissions per day, and return a dictionary that is sorted
+# Input: dict[str, float] ({mode-metric: CO2 Emission Per mile})
+# Output: dict[str, float] ({mode-metric: CO2 Emission Per mile})
+# ExInput: {'Chicago, Bus-diesel': 2.7432000000000003, 'Chicago, Heavy Rail-electric': 1.2468000000000001,
+# 'Chicago, Light Rail-electric': 1.0390000000000001, 'Los Angeles, Bus-diesel': 2.54,
+# 'Los Angeles, Heavy Rail-electric': 2.4921, 'Los Angeles, Light Rail-electric': 3.24,
+# 'New York City, Bus-diesel': 3.048, 'New York City, Heavy Rail-electric': 1.06029,
+# 'New York City, Light Rail-electric': 0.98175, 'San Francisco, Bus-diesel': 2.8448,
+# 'San Francisco, Heavy Rail-electric': 0.9750000000000001,
+# 'San Francisco, Light Rail-electric': 0.6240000000000001,
+# 'Seattle, Bus-diesel': 2.9463999999999997,
+# 'Seattle, Heavy Rail-diesel': 5.08, 'Seattle, Light Rail-electric': 0.02}
+# ExOutput: {'New York City, Bus-diesel': 3.048, 'New York City, Light Rail-electric': 0.98175,
+#                 'New York City, Heavy Rail-electric': 1.06029,'Chicago, Bus-diesel': 2.7432000000000003,
+#                 'Chicago, Light Rail-electric': 1.0390000000000001,
+#                 'Chicago, Heavy Rail-electric': 1.2468000000000001,'Seattle, Bus-diesel': 2.9463999999999997,
+#                 'Seattle, Light Rail-electric': 0.02, 'Seattle, Heavy Rail-diesel': 5.08,
+#                 'Los Angeles, Bus-diesel': 2.54, 'Los Angeles, Light Rail-electric': 3.24,
+#                 'Los Angeles, Heavy Rail-electric': 2.4921, 'San Francisco, Bus-diesel': 2.8448,
+#                 'San Francisco, Light Rail-electric': 0.6240000000000001,
+#                 'San Francisco, Heavy Rail-electric': 0.9750000000000001}
+# how to do: get dictionary into list -> call get_dict_in_lst_form(dic_city_mode_metric_co2_per_mile)
+#   sort list -> call sort_dict_in_lst_form(lst_city_mode_metric_co2_per_mile)
+#   get into dictionary -> call get_lst_in_dict_form(lst_city_mode_metric_co2_per_mile)
 def sort_city_mode_metric_co2_per_mile(dic_city_mode_metric_co2_per_mile:dict[str, float]) -> dict[str, float]:
     lst_city_mode_metric_co2_per_mile = get_dict_in_lst_form(dic_city_mode_metric_co2_per_mile)
     lst_city_mode_metric_co2_per_mile = sort_dict_in_lst_form(lst_city_mode_metric_co2_per_mile)
@@ -263,12 +327,19 @@ def sort_co2_per_passenger_by_mode_metric(dic_co2_per_passenger_by_mode_metric:d
     dict_co2_per_passenger_by_mode_metric = get_lst_in_dict_form(lst_co2_per_passenger_by_mode_metric)
     return dict_co2_per_passenger_by_mode_metric
 
+#Purpose: to find which transportation emits the most CO2
+#Input: list of transport
+#output: dict: str, float
+#ExOutput: "Highest-emitting mode;" CO2 per passenger
+def max_co2_per_passenger(lst_of_transport: list[Transportations]) -> dict[str, float]:
+    max_mode = None
+    max_value = -1.0
 
+    for t in lst_of_transport:
+        co2 = get_co2_per_passenger_mile(t)
+        if co2 > max_value:
+            max_value = co2
+            max_mode = f"{t.mode}-{t.energy['metric']}"
 
-# for each sorted list we assign point value to add to a dictionary, and then at the end we could display multiple
-#   or just code these and bypass the sorting
-#   dictionaries of which city had the least carbon footprint per day
-#   and which transportation mode had the least carbon footprint per mile and per day
-#   which city had the least carbon footprint in relation to the passengers
-#   which mode had the least carbon footprint in relation to the passengers
+    return {max_mode: max_value}
 

@@ -70,6 +70,12 @@ def prt_sort_co2_per_passenger_by_city() -> None:
     print("CO2 Per Passenger by City:")
     print(co2_per_passenger_city_str)
 
+def prt_max_co2_per_passenger() -> None:
+    max_co2_per_passenger = transitfunctions.max_co2_per_passenger(full_data)
+    print("Highest CO2 per passenger-mile:")
+    for key in max_co2_per_passenger:
+        print("{}:{} kgCO2/passenger-mile".format(key,max_co2_per_passenger[key]))
+
 def main():
     prt_sort_city_mode_metric_co2_per_mile()
     prt_sort_mode_metric_co2_per_day()
@@ -80,7 +86,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 
